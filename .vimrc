@@ -7,14 +7,14 @@ set langmenu=zh_CN.UTF-8
 syntax enable
 syntax on
  
-colorscheme torte
+colorscheme koehler 
  
 set mouse=a
 set selection=exclusive
 set selectmode=mouse,key
  
 set showmatch
- set number
+set number
 set nocompatible
  
 set tabstop=4
@@ -23,4 +23,5 @@ set softtabstop=4
 set shiftwidth=4
 set autoindent
 set cindent
-
+set ruler
+set rulerformat=%55(%{strftime('%a\ %b\ %e\ %I:%M\ %p')}\ %5l,%-6(%c%V%)\ %P%)
