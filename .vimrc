@@ -7,7 +7,7 @@ set langmenu=zh_CN.UTF-8
 syntax enable
 syntax on
  
-colorscheme torte
+colorscheme koehler 
  
 set mouse=a
 set selection=exclusive
