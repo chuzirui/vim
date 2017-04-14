@@ -1,12 +1,12 @@
-#MANO from zero ground
+# MANO from zero ground
 
-##0. Please have Cent-OS 7.2 installed. 
+## 0. Please have Cent-OS 7.2 installed. 
 Minimal Installation is OK
 
-##1. Install openstack
+## 1. Install openstack
 
 
-####1.1 preinstall of openstack (to avoid sudo, assuming you are THE root )
+#### 1.1 preinstall of openstack (to avoid sudo, assuming you are THE root )
 wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo
 yum -y update
 yum install -y ntp openssh-server wget
@@ -16,7 +16,7 @@ sed -i 's/enabled=0/enabled=1/' /etc/yum.repos.d/CentOS-OpenStack-*.repo
 yum deplist erlang-wx | awk '/provider:/ {print $2}'| sort -u | xargs yum -y install
 yum install erlang --skip-broken -y
 
-####1.2 install openstack via packstack (with heat )
+#### 1.2 install openstack via packstack (with heat )
 yum install -y centos-release-openstack-liberty
 yum update -y
 yum install -y openstack-packstack
@@ -41,7 +41,7 @@ neutron subnet-create --name private_subnet private_network 192.168.100.0/24 --d
 neutron router-interface-add router1 private_subnet  
 
 
-####1.3.install tacker
+#### 1.3.install tacker
 login to openstack controller
 
 source ~/keystone_admin
@@ -53,7 +53,7 @@ run the installation script
 
 cd tacker-deployment/
 ./tacker-deployment.sh
-####1.4 create tacker vnfd for vyatta  
+#### 1.4 create tacker vnfd for vyatta  
 upload 5600 vrouter image to openstack 
 
 glance image-create --name 'vyatta' --container-format bare --disk-format qcow2 --file vyatta_vrouter.qcow2
@@ -68,12 +68,12 @@ cp /root/cloudify/tosca-nfv/tacker/vnfd/vrouter-vnfd-cloudify.yaml /root/
 need to make sure you’ve got a valid mgmt interface, needs to be reachable by openstack controller for ssh config
 
 tacker vnfd-create --vnfd-file vrouter-vnfd-cloudify.yaml --name vrouter
-####1.5 upload centos/ubuntu images to openstack
+#### 1.5 upload centos/ubuntu images to openstack
 wget https://cloud-images.ubuntu.com/trusty/20160906/trusty-server-cloudimg-amd64-disk1.img
 wget http://cloud.centos.org/centos/7/images/CentOS-7-x86_64-GenericCloud-20140929_01.qcow2
 glance image-create --name "centos" --disk-format qcow2 --container-format bare --file CentOS-7-x86_64-GenericCloud-20140929_01.qcow2
 glance image-create --name "ubuntu" --disk-format qcow2 --container-format bare --file trusty-server-cloudimg-amd64-disk1.img
-####1.6 cinder volume message
+#### 1.6 cinder volume message
 modify /etc/cinder/cinder.ini accoring to contoller's IP
 
 [keystone_authtoken]
@@ -86,8 +86,8 @@ nova boot --flavor host --image trusty --security-groups default --key-name mana
 nova boot --flavor host --image trusty --security-groups default --key-name manager-kp --nic net-id=ceb1002c-120f-4111-9746-a30155d4f100 --nic net-id=8287decf-c04b-49e4-960a-4ac072393efe north
 
 
-##2. Install Cloudify
-####2.1 install cloudify client
+## 2. Install Cloudify
+#### 2.1 install cloudify client
 
 Install cli using get-cloudily.py script
 
@@ -101,7 +101,7 @@ wget http://repository.cloudifysource.org/org/cloudify3/LatestRelease/cloudify-3
 rpm -i cloudify-3.4.0~2.ga-402.el6.x86_64.rpm
 
 
-####2.2 install cloudify manager
+#### 2.2 install cloudify manager
 Create a cloudify flavour for CM minimum (2 vcpus, 5 GB RAM, 20GB HDD)
 
     nova flavor-create cloudify auto 5120 20 2
