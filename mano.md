@@ -7,14 +7,15 @@ Minimal Installation is OK
 
 
 #### 1.1 preinstall of openstack (to avoid sudo, assuming you are THE root )
-wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo
-yum -y update
-yum install -y ntp openssh-server wget
+    wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo
+    yum -y update
+    yum install -y ntp openssh-server wget
+    
 to fix erlang
 
-sed -i 's/enabled=0/enabled=1/' /etc/yum.repos.d/CentOS-OpenStack-*.repo
-yum deplist erlang-wx | awk '/provider:/ {print $2}'| sort -u | xargs yum -y install
-yum install erlang --skip-broken -y
+    sed -i 's/enabled=0/enabled=1/' /etc/yum.repos.d/CentOS-OpenStack-*.repo
+    yum deplist erlang-wx | awk '/provider:/ {print $2}'| sort -u | xargs yum -y install
+    yum install erlang --skip-broken -y
 
 #### 1.2 install openstack via packstack (with heat )
 yum install -y centos-release-openstack-liberty
