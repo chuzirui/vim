@@ -18,73 +18,77 @@ to fix erlang
     yum install erlang --skip-broken -y
 
 #### 1.2 install openstack via packstack (with heat )
-yum install -y centos-release-openstack-liberty
-yum update -y
-yum install -y openstack-packstack
+    
+    yum install -y centos-release-openstack-liberty
+    yum update -y
+    yum install -y openstack-packstack
 
 please change the ethernet card's name and the ovs bridge according to your system
 
-packstack --allinone --provision-demo=n --os-neutron-ovs-bridge-mappings=extnet:br-ex,mgmt:br-int --os-neutron-ovs-bridge-interfaces=br-ex:em3,br-int:em1 --os-neutron-ml2-type-drivers=vxlan,flat,vlan --os-neutron-ml2-flat-networks=extnet,mgmt  --os-neutron-lbaas-install=y --os-heat-install=y --os-cinder-install=n
+    packstack --allinone --provision-demo=n --os-neutron-ovs-bridge-mappings=extnet:br-ex,mgmt:br-int --os-neutron-ovs-bridge-interfaces=br-ex:em3,br-int:em1 --os-neutron-ml2-type-drivers=vxlan,flat,vlan --os-neutron-ml2-flat-networks=extnet,mgmt  --os-neutron-lbaas-install=y --os-heat-install=y --os-cinder-install=n
 
-packstack --install-hosts=172.24.103.207,172.24.103.206 --provision-demo=n --os-neutron-ovs-bridge-mappings=extnet:br-ex --os-neutron-ovs-bridge-interfaces=br-ex:em4 --os-neutron-ml2-type-drivers=vxlan,flat,vlan --os-neutron-ml2-flat-networks=*  --os-neutron-lbaas-install=y --os-heat-install=y --os-cinder-install=n
+    packstack --install-hosts=172.24.103.207,172.24.103.206 --provision-demo=n --os-neutron-ovs-bridge-mappings=extnet:br-ex --os-neutron-ovs-bridge-interfaces=br-ex:em4 --os-neutron-ml2-type-drivers=vxlan,flat,vlan --os-neutron-ml2-flat-networks=*  --os-neutron-lbaas-install=y --os-heat-install=y --os-cinder-install=n
 
-systemctl disable NetworkManager.service
-systemctl stop NetworkManager.service
-chkconfig network
-sudo systemctl restart network
-neutron net-create external_network --provider:network_type flat --provider:physical_network extnet  --router:external --shared 
+    systemctl disable NetworkManager.service
+    systemctl stop NetworkManager.service
+    chkconfig network
+    sudo systemctl restart network
+    neutron net-create external_network --provider:network_type flat --provider:physical_network extnet  --router:external --shared 
 
-neutron subnet-create --name ex_net --enable_dhcp=False --allocation-pool=start=192.168.23.130,end=192.168.23.170   --gateway=192.168.23.1 external_network 192.168.23.0/24 
-neutron router-create router1
-neutron router-gateway-set router1 external_network
-neutron net-create private_network 
-neutron subnet-create --name private_subnet private_network 192.168.100.0/24 --dns-nameserver 119.29.29.29
-neutron router-interface-add router1 private_subnet  
+    neutron subnet-create --name ex_net --enable_dhcp=False --allocation-pool=start=192.168.23.130,end=192.168.23.170   --gateway=192.168.23.1 external_network 192.168.23.0/24 
+    neutron router-create router1
+    neutron router-gateway-set router1 external_network
+    neutron net-create private_network 
+    neutron subnet-create --name private_subnet private_network 192.168.100.0/24 --dns-nameserver 119.29.29.29
+    neutron router-interface-add router1 private_subnet  
 
 
 #### 1.3.install tacker
 login to openstack controller
 
-source ~/keystone_admin
+    source ~/keystone_admin
 
 copy and unzip the tack.tar file
 
-tar xf tack.tar 
-run the installation script
+    tar xf tack.tar 
+    run the installation script
 
-cd tacker-deployment/
-./tacker-deployment.sh
+    cd tacker-deployment/
+    ./tacker-deployment.sh
+    
 #### 1.4 create tacker vnfd for vyatta  
 upload 5600 vrouter image to openstack 
 
-glance image-create --name 'vyatta' --container-format bare --disk-format qcow2 --file vyatta_vrouter.qcow2
-nova flavor-create vrouter auto 2048 8 2
-openstack user set --password nottacker tacker
+    glance image-create --name 'vyatta' --container-format bare --disk-format qcow2 --file vyatta_vrouter.qcow2
+    nova flavor-create vrouter auto 2048 8 2
+    openstack user set --password nottacker tacker
 
 
 upload vnfd from tosca-nfv/tacker/vnfd directory vrouter-vnfd-cloudify.yaml
 
-cp /root/cloudify/tosca-nfv/tacker/vnfd/vrouter-vnfd-cloudify.yaml /root/
+    cp /root/cloudify/tosca-nfv/tacker/vnfd/vrouter-vnfd-cloudify.yaml /root/
 
 need to make sure you’ve got a valid mgmt interface, needs to be reachable by openstack controller for ssh config
+    
+    tacker vnfd-create --vnfd-file vrouter-vnfd-cloudify.yaml --name vrouter
 
-tacker vnfd-create --vnfd-file vrouter-vnfd-cloudify.yaml --name vrouter
 #### 1.5 upload centos/ubuntu images to openstack
-wget https://cloud-images.ubuntu.com/trusty/20160906/trusty-server-cloudimg-amd64-disk1.img
-wget http://cloud.centos.org/centos/7/images/CentOS-7-x86_64-GenericCloud-20140929_01.qcow2
-glance image-create --name "centos" --disk-format qcow2 --container-format bare --file CentOS-7-x86_64-GenericCloud-20140929_01.qcow2
-glance image-create --name "ubuntu" --disk-format qcow2 --container-format bare --file trusty-server-cloudimg-amd64-disk1.img
+    wget https://cloud-images.ubuntu.com/trusty/20160906/trusty-server-cloudimg-amd64-disk1.img
+    wget http://cloud.centos.org/centos/7/images/CentOS-7-x86_64-GenericCloud-20140929_01.qcow2
+    glance image-create --name "centos" --disk-format qcow2 --container-format bare --file CentOS-7-x86_64-GenericCloud-20140929_01.qcow2
+    glance image-create --name "ubuntu" --disk-format qcow2 --container-format bare --file trusty-server-cloudimg-amd64-disk1.img
+
 #### 1.6 cinder volume message
 modify /etc/cinder/cinder.ini accoring to contoller's IP
 
-[keystone_authtoken]
-auth_uri=http://<controller-ip>:5000/v2.0
-identity_uri = https://<controller-ip>>:35357/
+    [keystone_authtoken]
+    auth_uri=http://<controller-ip>:5000/v2.0
+    identity_uri = https://<controller-ip>>:35357/
 
 Boot test host
 
-nova boot --flavor host --image trusty --security-groups default --key-name manager-kp --nic net-id=e36fbedb-0191-460c-843d-459cb35e7ef1 --nic net-id=8287decf-c04b-49e4-960a-4ac072393efe south
-nova boot --flavor host --image trusty --security-groups default --key-name manager-kp --nic net-id=ceb1002c-120f-4111-9746-a30155d4f100 --nic net-id=8287decf-c04b-49e4-960a-4ac072393efe north
+    nova boot --flavor host --image trusty --security-groups default --key-name manager-kp --nic net-id=e36fbedb-0191-460c-843d-459cb35e7ef1 --nic net-id=8287decf-c04b-49e4-960a-4ac072393efe south
+    nova boot --flavor host --image trusty --security-groups default --key-name manager-kp --nic net-id=ceb1002c-120f-4111-9746-a30155d4f100 --nic net-id=8287decf-c04b-49e4-960a-4ac072393efe north
 
 
 ## 2. Install Cloudify
@@ -92,14 +96,14 @@ nova boot --flavor host --image trusty --security-groups default --key-name mana
 
 Install cli using get-cloudily.py script
 
-mkdir cloudify && cd cloudify
-wget http://gigaspaces-repository-eu.s3.amazonaws.com/org/cloudify3/get-cloudify.py
-sudo python get-cloudify.py -e venv --install-virtualenv
+    mkdir cloudify && cd cloudify
+    wget http://gigaspaces-repository-eu.s3.amazonaws.com/org/cloudify3/get-cloudify.py
+    sudo python get-cloudify.py -e venv --install-virtualenv
 source venv/bin/activate
 Or install from rpm
 
-wget http://repository.cloudifysource.org/org/cloudify3/LatestRelease/cloudify-3.4.0~2.ga-402.el6.x86_64.rpm
-rpm -i cloudify-3.4.0~2.ga-402.el6.x86_64.rpm
+    wget http://repository.cloudifysource.org/org/cloudify3/LatestRelease/cloudify-3.4.0~2.ga-402.el6.x86_64.rpm
+    rpm -i cloudify-3.4.0~2.ga-402.el6.x86_64.rpm
 
 
 #### 2.2 install cloudify manager
