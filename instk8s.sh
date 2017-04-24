@@ -27,6 +27,7 @@ read -e -p 'Enter Your NSX IP:'  IP
 read -e -p 'Enter Your NSX account:' -i 'admin' USER
 read -e -p 'Enter Your NSX pwd:' -i 'Admin!23Admin' PWD
 read -e -p 'Enter Your cluster name:'  CLUSTER
+read -e -p 'Enter Your overlay interface:'  -i 'eth1' ETH
 
 cat <<EOF > /tmp/ncp.ini
 [DEFAULT]
@@ -46,4 +47,21 @@ subnet_prefix = 24
 external_ip_pool_id = acfe5a81-29eb-4b4a-877b-cae2a6794027
 default_external_ip = 10.114.209.193
 EOF
-
+mkdir /etc/nsx-ujo
+cp /tmp/ncp.ini /etc/nsx-ujo
+ovs-vsctl add-br br-int
+ovs-vsctl set-fail-mode br-int standalone
+ovs-vsctl add-port br-int $ETH
+ovs-vsctl set Interface $ETH ofport=1
+ln -s /usr/local/bin/nsx_cni.py /opt/cni/bin/nsx_cni
+mkdir -p /etc/cni/net.d
+cat <<EOF > /etc/cni/net.d/10-net.conf
+{
+    "name": "net",
+        "type": "nsx_cni",
+        "bridge": "br-int",
+        "isGateway": true,
+        "ipMasq": false,
+        "ipam": {}
+}
+EOF
