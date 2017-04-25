@@ -18,7 +18,7 @@ Plugin 'tpope/vim-fugitive'
 " Plugin 'L9'
 " Git plugin not hosted on GitHub
 Plugin 'Valloric/YouCompleteMe'
-
+Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'git://git.wincent.com/command-t.git'
 " git repos on your local machine (i.e. when working on your own plugin)
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
@@ -36,24 +36,25 @@ set encoding=utf-8
 
 set fencs=utf-8,ucs-bom,shift-jis,gb18030,gbk,gb2312,cp936
 set fileencodings=utf-8,ucs-bom,chinese
- 
+
 set langmenu=zh_CN.UTF-8
- 
+
 syntax enable
 syntax on
- 
-colorscheme koehler 
- 
+
+colorscheme koehler
+
 set mouse=a
 set selection=exclusive
 set selectmode=mouse,key
- 
+
 set showmatch
 set number
 set nocompatible
- 
+
+set textwidth=79
 set tabstop=4
-set expandtab 
+set expandtab
 set softtabstop=4
 set shiftwidth=4
 set autoindent
