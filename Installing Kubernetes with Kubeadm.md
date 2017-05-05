@@ -1,4 +1,4 @@
-#Installing Kubernetes with Kubeadm
+# Installing Kubernetes with Kubeadm
 
 This document will guide you through the steps required for setting up
 a Kubernetes Cluster with the *kubeadm* tool.
@@ -6,7 +6,7 @@ Upstream documentation for *kubeadm* can be found at
 https://kubernetes.io/docs/getting-started-guides/kubeadm/
 
 
-##Setting up the cluster
+## Setting up the cluster
 
 
 **NOTE**: Currently Kubeadm does not support Master redundancy
@@ -67,7 +67,7 @@ network. For this pods the CNI plugin will keep failing until NCP and the
 nsx-node-agent are not up and running.
 
 
-##Running pods on master node
+## Running pods on master node
 
 
 If you just have a single node setup and your master node is same as worker node.
@@ -96,7 +96,7 @@ to be used for container networking.
 
 **After editing restart the kubelet service for the change to take affect**
 
-##Using the Kubernetes insecure API endpoint
+## Using the Kubernetes insecure API endpoint
 
 
 **NOTE**: according to the kubeadm version you are running manifest files could
@@ -142,7 +142,7 @@ The ncp.ini configuration file should look like the following:
 **NOTE**: Please review the ncp.ini.in example in this repo for more details on each of these settings.
 
 
-##RBAC Configuration for NCP
+## RBAC Configuration for NCP
 
 
 When the RBAC admission controller is enabled, the service account used by NCP
@@ -157,7 +157,7 @@ account in the default namespace::
 	   kubectl create clusterrolebinding default:default:clusteradmin \
 	   --clusterrole cluster-admin --serviceaccount default:default
 
-##Work with the Kubernetes Cluster from another machine
+## Work with the Kubernetes Cluster from another machine
 
 
 
