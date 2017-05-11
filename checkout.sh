@@ -1,6 +1,7 @@
 #!/bin/sh
 ssh-keygen -t rsa
-apt install -y cscope xsel 
+apt install -y vim cscope xsel 
+declare -x EDITOR='vim'
 pip install flake8 tox
 git clone ssh://git@git.eng.vmware.com/nsx-ujo.git
 git config --global user.email "chul@vmware.com"
