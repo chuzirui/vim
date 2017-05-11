@@ -356,6 +356,3 @@ cfy executions list           # List all executions
 cfy events list -e <exec-id> -l # Get the log messages for an execution
 
 
-
-
-

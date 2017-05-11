@@ -19,6 +19,7 @@ Plugin 'tpope/vim-fugitive'
 " Git plugin not hosted on GitHub
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'ntpeters/vim-better-whitespace'
+Plugin 'tmhedberg/SimpylFold'
 Plugin 'git://git.wincent.com/command-t.git'
 " git repos on your local machine (i.e. when working on your own plugin)
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
@@ -33,6 +34,8 @@ filetype plugin indent on    " required
 "filetype plugin on
 
 set encoding=utf-8
+set spelllang=en
+set spell
 
 set fencs=utf-8,ucs-bom,shift-jis,gb18030,gbk,gb2312,cp936
 set fileencodings=utf-8,ucs-bom,chinese
@@ -50,6 +53,7 @@ set selectmode=mouse,key
 
 set showmatch
 set number
+set relativenumber
 set nocompatible
 
 set cindent
