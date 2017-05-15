@@ -93,3 +93,16 @@ nore : ;
 
 autocmd VimEnter * nested :call tagbar#autoopen(1)
 
+function HeaderPython()
+    call setline(1, "#!/usr/bin/env python")
+    call append(1, "# -*- coding: utf-8 -*-")
+    normal G
+    normal o
+endf
+function HeaderSh()
+    call setline(1, "#!/usr/bin/env bash")
+    normal G
+    normal o
+endf
+autocmd bufnewfile *.py call HeaderPython()
+autocmd bufnewfile *.sh call HeaderSh()
