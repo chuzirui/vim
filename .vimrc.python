@@ -88,8 +88,6 @@ set autoindent
 set cindent
 set ruler
 set rulerformat=%55(%{strftime('%a\ %b\ %e\ %I:%M\ %p')}\ %5l,%-6(%c%V%)\ %P%)
-nore ; :
-nore : ;
 
 autocmd VimEnter * nested :call tagbar#autoopen(1)
 

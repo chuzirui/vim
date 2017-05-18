@@ -21,6 +21,9 @@ Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'git://git.wincent.com/command-t.git'
 " git repos on your local machine (i.e. when working on your own plugin)
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+Plugin 'spf13/vim-colors'
+Plugin 'flazz/vim-colorschemes'
+Plugin 'majutsushi/tagbar'
 " Install L9 and avoid a Naming conflict if you've already installed a
 " different version somewhere else.
 " Plugin 'ascenator/L9', {'name': 'newL9'}
@@ -43,7 +46,8 @@ set langmenu=zh_CN.UTF-8
 syntax enable
 syntax on
 
-colorscheme koehler
+"colorscheme koehler
+colorscheme seoul256
 
 set mouse=a
 set selection=exclusive
@@ -66,3 +70,4 @@ set softtabstop=4 " insert/delete 4 spaces when hitting a TAB/BACKSPACE
 set shiftround    " round indent to multiple of 'shiftwidth'
 set autoindent    " align the new line indent with the previous line
 
+autocmd VimEnter * nested :call tagbar#autoopen(1)
