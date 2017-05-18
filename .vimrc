@@ -17,9 +17,7 @@ Plugin 'tpope/vim-fugitive'
 " plugin from http://vim-scripts.org/vim/scripts.html
 " Plugin 'L9'
 " Git plugin not hosted on GitHub
-Plugin 'Valloric/YouCompleteMe'
 Plugin 'ntpeters/vim-better-whitespace'
-Plugin 'tmhedberg/SimpylFold'
 Plugin 'git://git.wincent.com/command-t.git'
 " git repos on your local machine (i.e. when working on your own plugin)
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
@@ -67,6 +65,4 @@ set expandtab     " insert spaces when hitting TABs
 set softtabstop=4 " insert/delete 4 spaces when hitting a TAB/BACKSPACE
 set shiftround    " round indent to multiple of 'shiftwidth'
 set autoindent    " align the new line indent with the previous line
-nore ;:
-nore :;
 
