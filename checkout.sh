@@ -14,5 +14,6 @@ cp .vimrc ~/
  vim +PluginInstall +qall
 cd nsx-ujo
 find . -name "*.py" >> cscope.files
+find "nsx_ujo/bin" -name "nsx" >> cscope.files
 cscope -Rk
 
