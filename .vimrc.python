@@ -27,6 +27,7 @@ Plugin 'Yggdroot/indentLine'
 Plugin 'spf13/vim-colors'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'majutsushi/tagbar'
+Plugin 'jiangmiao/auto-pairs'
 
 " git repos on your local machine (i.e. when working on your own plugin)
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
@@ -56,6 +57,7 @@ set background=dark
 
 "colorscheme solarized
 colorscheme seoul256
+colorscheme radicalgoodspeed
 let g:indentLine_char = "¦"
 let g:indentLine_enabled = 0
 let g:autopep8_disable_show_diff=1
@@ -88,8 +90,18 @@ set autoindent
 set cindent
 set ruler
 set rulerformat=%55(%{strftime('%a\ %b\ %e\ %I:%M\ %p')}\ %5l,%-6(%c%V%)\ %P%)
-nore ; :
-nore : ;
 
 autocmd VimEnter * nested :call tagbar#autoopen(1)
-
+function HeaderPython()
+    call setline(1, "#!/usr/bin/env python")
+    call append(1, "# -*- coding: utf-8 -*-")
+    normal G
+    normal o
+endf
+function HeaderSh()
+    call setline(1, "#!/usr/bin/env bash")
+    normal G
+    normal o
+endf
+autocmd bufnewfile *.py call HeaderPython()
+autocmd bufnewfile *.sh call HeaderSh()
