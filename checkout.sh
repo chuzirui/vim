@@ -1,10 +1,10 @@
 #!/bin/sh
 ssh-keygen -t rsa
-apt install -y vim cscope xsel 
+apt install -y vim cscope xsel git-review exuberant-ctags
 pip install flake8 tox
 git clone ssh://git@git.eng.vmware.com/nsx-ujo.git
 git config --global user.email "chul@vmware.com"
-git config --global user.name "Leo"
+git config --global user.name "Leo Chu"
 export EDITOR=vim
 
 cp -r .vim/ ~/
