@@ -9,8 +9,9 @@ EOF
 
 apt-get update
 
-apt-get install -y docker.io
+apt-get install -y docker-ce
 apt-get install -y kubelet kubeadm kubectl kubernetes-cni
+apt-get install -f -y
 cat <<EOF > /etc/docker/daemon.json
 {
      "insecure-registries": ["reg.yves.local"]
