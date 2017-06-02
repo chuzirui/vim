@@ -4,7 +4,6 @@ scp root@10.39.1.2:/root/.ssh/id_rsa ~/.ssh/
 scp root@10.39.1.2:/root/.ssh/id_rsa.pub ~/.ssh/
 apt install -y vim cscope xsel git-review exuberant-ctags
 apt install -y autojump thefuck
-apt install -y python-dev python3-dev
 pip install flake8 tox
 git clone ssh://git@git.eng.vmware.com/nsx-ujo.git
 git config --global user.email "chul@vmware.com"

@@ -7,7 +7,7 @@ cat <<EOF > /etc/apt/sources.list.d/kubernetes.list
 deb http://apt.kubernetes.io/ kubernetes-xenial main
 EOF
 
-apt-get update
+apt-get update -y
 
 apt-get install -y docker-ce
 apt-get install -y kubelet kubeadm kubectl kubernetes-cni
