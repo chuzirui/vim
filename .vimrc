@@ -21,6 +21,7 @@ Plugin 'ntpeters/vim-better-whitespace'
 " git repos on your local machine (i.e. when working on your own plugin)
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 Plugin 'spf13/vim-colors'
+Plugin 'Valloric/YouCompleteMe'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'majutsushi/tagbar'
 " Install L9 and avoid a Naming conflict if you've already installed a
