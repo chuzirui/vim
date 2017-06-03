@@ -1,0 +1,9 @@
+{
+    "server":"0.0.0.0",
+    "port_password":{
+        "8558":"Log1tech",
+        "6666":"Juniper1"
+    },
+    "timeout":600,
+    "method":"aes-256-cfb"
+}
