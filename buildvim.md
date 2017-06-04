@@ -48,4 +48,4 @@ Also, if you're not using vim 8.0, make sure to set the VIMRUNTIMEDIR variable c
                 --enable-luainterp=yes \
                 --enable-gui=gtk2 --enable-cscope --prefix=/usr
 
-make VIMRUNTIMEDIR=/usr/share/vim/vim80
+    make VIMRUNTIMEDIR=/usr/share/vim/vim80
