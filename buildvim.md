@@ -2,7 +2,8 @@
         libgtk2.0-dev libatk1.0-dev libbonoboui2-dev \
         libcairo2-dev libx11-dev libxpm-dev libxt-dev python-dev \
         python3-dev ruby-dev lua5.1 lua5.1-dev libperl-dev git
-    On Ubuntu 16.04, liblua5.1-dev is the lua dev package name not lua5.1-dev.
+    
+ On Ubuntu 16.04, liblua5.1-dev is the lua dev package name not lua5.1-dev.
 
 (If you know what languages you'll be using, feel free to leave out packages you won't need, e.g. Python2 python-dev or Ruby ruby-dev. This principle heavily applies to the whole page.)
 
