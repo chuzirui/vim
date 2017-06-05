@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+git config --global user.email "chuzirui@gmail.com"
+git config --global user.name "leo chu"
 apt install -y vim cscope xsel git-review exuberant-ctags
 apt install -y python-pip autojump thefuck
 apt-get -y install build-essential cmake python-dev python3-dev
