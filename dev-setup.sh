@@ -7,7 +7,7 @@ pip install flake8 tox
 export EDITOR=vim
 cp -r .vim/ ~/
 cp .vimrc.python ~/.vimrc
-cp .bashrc ~/
+#cp .bashrc ~/
  [ ! -d "$HOME/.vim/bundle"  ] && git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 vim +PluginInstall +qall
 cd ~/.vim/bundle/YouCompleteMe
