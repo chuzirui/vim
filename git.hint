@@ -150,3 +150,5 @@ git revert <commit SHA>
 # this just applies a single commit from a branch to current branch
 git cherry-pick <commit SHA1>
 git remote set-url origin git@github.com:chuzirui/vim.git
+git fetch https://gitreview.eng.vmware.com/nsx-ujo refs/changes/36/74436/9 && git cherry-pick FETCH_HEAD
+

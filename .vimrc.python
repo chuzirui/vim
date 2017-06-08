@@ -104,3 +104,4 @@ function HeaderSh()
 endf
 autocmd bufnewfile *.py call HeaderPython()
 autocmd bufnewfile *.sh call HeaderSh()
+autocmd FileType c,cpp,python,ruby,java autocmd BufWritePre <buffer> :%s/\s\+$//e

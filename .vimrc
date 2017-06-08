@@ -71,3 +71,4 @@ set shiftround    " round indent to multiple of 'shiftwidth'
 set autoindent    " align the new line indent with the previous line
 
 autocmd VimEnter * nested :call tagbar#autoopen(1)
+autocmd FileType c,cpp,python,ruby,java autocmd BufWritePre <buffer> :%s/\s\+$//e
