@@ -2,6 +2,7 @@
 apt update -y
 apt install -y vim cscope xsel git-review exuberant-ctags
 apt install -y python-pip autojump thefuck
+apt install -y libssl-dev python-openssl
 apt-get -y install build-essential cmake python-dev python3-dev
 pip install flake8 tox
 export EDITOR=vim
