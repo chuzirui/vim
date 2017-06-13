@@ -6,6 +6,7 @@ git config --global user.email "chul@vmware.com"
 git config --global user.name "Leo Chu"
 
 cd nsx-ujo
+pip install .
 find . -name "*.py" >> cscope.files
 find . -name "nsx" >> cscope.files
 cscope -Rk
