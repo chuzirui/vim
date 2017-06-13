@@ -1,15 +1,16 @@
 #!/bin/bash
 echo "$(hostname -I | grep '[0-9]*\.[0-9]*\.[0-9]*\.[0-9]*' -o | head -1)  $(hostname)" >> /etc/hosts
 echo "10.114.209.37   reg.yves.local " >> /etc/hosts
+apt-get update -y
+
+apt-get install -y curl
 curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
 
 cat <<EOF > /etc/apt/sources.list.d/kubernetes.list
 deb http://apt.kubernetes.io/ kubernetes-xenial main
 EOF
 
-apt-get update -y
-
-apt-get install -y docker-ce
+apt-get install -y docker.io docker-ce 
 apt-get install -y kubelet kubeadm kubectl kubernetes-cni
 apt-get install -f -y
 cat <<EOF > /etc/docker/daemon.json
@@ -48,8 +49,8 @@ subnet_prefix = 24
 external_ip_pool_id = acfe5a81-29eb-4b4a-877b-cae2a6794027
 default_external_ip = 10.114.209.193
 EOF
-mkdir /etc/nsx-ujo
-cp /tmp/ncp.ini /etc/nsx-ujo
+mkdir -p /etc/nsx-ujo
+cp -r /tmp/ncp.ini /etc/nsx-ujo
 ovs-vsctl add-br br-int
 ovs-vsctl set-fail-mode br-int standalone
 ovs-vsctl add-port br-int $ETH
