@@ -57,9 +57,9 @@ set background=dark
 "colorscheme eclipse
 
 "colorscheme solarized
-"colorscheme seoul256
+colorscheme seoul256
 "colorscheme radicalgoodspeed
-colorscheme monokai-chris 
+"colorscheme monokai-chris 
 let g:indentLine_char = "¦"
 let g:indentLine_enabled = 0
 let g:autopep8_disable_show_diff=1
