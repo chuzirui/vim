@@ -58,6 +58,7 @@ set background=dark
 
 "colorscheme solarized
 colorscheme seoul256
+colorscheme watermark
 "colorscheme radicalgoodspeed
 "colorscheme monokai-chris 
 let g:indentLine_char = "¦"

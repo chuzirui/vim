@@ -18,10 +18,12 @@ cat <<EOF > /etc/docker/daemon.json
      "insecure-registries": ["reg.yves.local"]
 }
 EOF
-
 service docker restart
 systemctl enable docker.service
 kubeadm init
+sudo cp /etc/kubernetes/admin.conf $HOME/
+sudo chown $(id -u):$(id -g) $HOME/admin.conf
+export KUBECONFIG=$HOME/admin.conf
 sed -i 's/insecure-port=0/insecure-port=8080/1' /etc/kubernetes/manifests/kube-apiserver.yaml
 
 sed -i "/insecure-port/a\    - --insecure-bind-address=0.0.0.0" /etc/kubernetes/manifests/kube-apiserver.yaml
