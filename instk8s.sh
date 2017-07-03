@@ -24,6 +24,9 @@ kubeadm init
 sudo cp /etc/kubernetes/admin.conf $HOME/
 sudo chown $(id -u):$(id -g) $HOME/admin.conf
 export KUBECONFIG=$HOME/admin.conf
+secret=`kubectl get serviceaccount default -o yaml | grep -A1 secrets |  tail -n1 | awk {'print $3'}`
+kubectl get secret $secret -o yaml | grep "token:" | awk {'print $2'} |  base64 -d > /etc/nsx-ujo/default_token
+
 sed -i 's/insecure-port=0/insecure-port=8080/1' /etc/kubernetes/manifests/kube-apiserver.yaml
 
 sed -i "/insecure-port/a\    - --insecure-bind-address=0.0.0.0" /etc/kubernetes/manifests/kube-apiserver.yaml
