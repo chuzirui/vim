@@ -151,4 +151,5 @@ git revert <commit SHA>
 git cherry-pick <commit SHA1>
 git fetch https://gitreview.eng.vmware.com/nsx-ujo refs/changes/36/74436/9 && git cherry-pick FETCH_HEAD
 git remote set-url origin ssh://git@github.com/chuzirui/vim.git
+git remote set-url origin ssh://git@github.com/chuzirui/bosh-lite.git
  git stash apply stash@{0}

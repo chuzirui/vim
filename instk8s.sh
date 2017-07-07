@@ -10,7 +10,7 @@ cat <<EOF > /etc/apt/sources.list.d/kubernetes.list
 deb http://apt.kubernetes.io/ kubernetes-xenial main
 EOF
 
-apt-get install -y docker.io docker-ce 
+apt-get install -y docker.io
 apt-get install -y kubelet kubeadm kubectl kubernetes-cni
 apt-get install -f -y
 cat <<EOF > /etc/docker/daemon.json
