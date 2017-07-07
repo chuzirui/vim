@@ -15,7 +15,7 @@ apt-get install -y kubelet kubeadm kubectl kubernetes-cni
 apt-get install -f -y
 cat <<EOF > /etc/docker/daemon.json
 {
-     "insecure-registries": ["reg.yves.local"]
+    "insecure-registries": ["reg.yves.local"]
 }
 EOF
 service docker restart
