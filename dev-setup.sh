@@ -13,3 +13,9 @@ cp .vimrc.python ~/.vimrc
 vim +PluginInstall +qall
 cd ~/.vim/bundle/YouCompleteMe
 ./install.py --clang-completer
+git remote set-url origin ssh://git@github.com/chuzirui/vim.git
+git config --global user.email "chuzirui@gmail.com"
+git config --global user.name "Leo Chu"
+sudo add-apt-repository ppa:hzwhuang/ss-qt5
+sudo apt-get update
+sudo apt-get install shadowsocks-qt5
