@@ -12,6 +12,6 @@ cd nsx-ujo
 pip install --upgrade pip
 pip install .
 find . -name "*.py" >> cscope.files
-find . -name "nsx" >> cscope.files
+find . -name "nsx" -type f >> cscope.files
 cscope -Rk
 
