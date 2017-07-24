@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 apt update -y
 apt install -y vim cscope xsel git-review exuberant-ctags
-apt install -y python-pip autojump thefuck
+apt install -y python-pip autojump
+pip install -y thefuck
 apt install -y libssl-dev python-openssl silversearcher-ag
 apt-get -y install build-essential cmake python-dev python3-dev
 pip install flake8 tox
