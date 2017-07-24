@@ -1,6 +1,7 @@
 #!/bin/sh
 ips=`grep 'can not parse header' /var/log/ss.log| egrep '([0-9]{1,3}\.){3}[0-9]{1,3}' -o | sort| uniq`
-for a in $ips; do echo $a; done
+oclok=`date`
+for a in $ips; do echo $a $oclok >> ip.txt; done
 for a in $ips
     do
         iptables -D INPUT  -s $a -j REJECT --reject-with icmp-port-unreachable
