@@ -53,11 +53,14 @@ set langmenu=zh_CN.UTF-8
 syntax enable
 syntax on
 set background=dark
-"colorscheme koehler
+colorscheme koehler
 "colorscheme eclipse
 
 "colorscheme solarized
-colorscheme seoul256
+"set background=light
+"colorscheme google
+"colorscheme seoul256
+"colorscheme watermark
 "colorscheme radicalgoodspeed
 "colorscheme monokai-chris 
 let g:indentLine_char = "¦"
@@ -108,3 +111,7 @@ endf
 autocmd bufnewfile *.py call HeaderPython()
 autocmd bufnewfile *.sh call HeaderSh()
 autocmd FileType c,cpp,python,ruby,java autocmd BufWritePre <buffer> :%s/\s\+$//e
+noremap <Up> <NOP>
+noremap <Down> <NOP>
+noremap <Left> <NOP>
+noremap <Right> <NOP>

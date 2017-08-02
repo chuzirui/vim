@@ -48,6 +48,7 @@ syntax on
 
 "colorscheme koehler
 colorscheme seoul256
+colorscheme watermark
 
 set mouse=a
 set selection=exclusive
