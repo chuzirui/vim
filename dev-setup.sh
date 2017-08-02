@@ -17,6 +17,7 @@ cd ~/.vim/bundle/YouCompleteMe
 yum -y install gcc-c++
 ./install.py --clang-completer
 git remote set-url origin ssh://git@github.com/chuzirui/vim.git
+curl -o- -L https://raw.githubusercontent.com/TakeshiTseng/vim-language-p4/master/install.sh | bash
 git config --global user.email "chuzirui@gmail.com"
 git config --global user.name "Leo Chu"
 sudo add-apt-repository ppa:hzwhuang/ss-qt5
