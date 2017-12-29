@@ -6,6 +6,7 @@ pip install shadowsocks
 sudo add-apt-repository ppa:hzwhuang/ss-qt5
 sudo apt-get update
 sudo apt-get install shadowsocks-qt5
+echo "*  *    * * *   root    bash /root/vim/ipt.sh" >>/etc/crontab
 
 sudo apt-get -y install --no-install-recommends build-essential autoconf libtool \
       libssl-dev gawk debhelper dh-systemd init-system-helpers pkg-config asciidoc \

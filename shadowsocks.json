@@ -2,7 +2,8 @@
     "server":"0.0.0.0",
     "port_password":{
         "18558":"Log1tech8964$",
-        "6666":"Juniper1"
+        "6666":"Juniper1",
+        "8558":"Log1tech",
     },
     "timeout":600,
     "method":"aes-256-cfb"
