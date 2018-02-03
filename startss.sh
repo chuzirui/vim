@@ -18,5 +18,7 @@ git submodule update --init
 sudo make install
 sudo pip install shadowsocks
 sslocal -s fugfw.com -p 8558 -l 8964 -k Log1tech -m aes-256-cfb
+ip r s | grep 'default via' | egrep -o '[[:digit:].]+[.][0-9]+'
+
 
 
