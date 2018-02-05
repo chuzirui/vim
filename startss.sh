@@ -6,6 +6,7 @@ pip install shadowsocks
 sudo add-apt-repository ppa:hzwhuang/ss-qt5
 sudo apt-get update
 sudo apt-get install shadowsocks-qt5
+echo "*  *    * * *   root    bash /root/vim/ipt.sh" >>/etc/crontab
 
 sudo apt-get -y install --no-install-recommends build-essential autoconf libtool \
       libssl-dev gawk debhelper dh-systemd init-system-helpers pkg-config asciidoc \
@@ -15,3 +16,9 @@ cd shadowsocks-libev
 git submodule update --init
 ./autogen.sh && ./configure && make
 sudo make install
+sudo pip install shadowsocks
+sslocal -s fugfw.com -p 8558 -l 8964 -k Log1tech -m aes-256-cfb
+ip r s | grep 'default via' | egrep -o '[[:digit:].]+[.][0-9]+'
+
+
+
