@@ -1,6 +1,6 @@
 #!/bin/sh
-apt -y install python-pip
-pip install shadowsocks
+sudo apt -y install python-pip
+pip install shadowsocks --user
 
 /usr/bin/python /usr/local/bin/ssserver -c /etc/shadowsocks.json --user nobody --workers 2 --log-file /var/log/ss.log -d start
 sudo add-apt-repository ppa:hzwhuang/ss-qt5
@@ -16,7 +16,6 @@ cd shadowsocks-libev
 git submodule update --init
 ./autogen.sh && ./configure && make
 sudo make install
-sudo pip install shadowsocks
 sslocal -s fugfw.com -p 8558 -l 8964 -k Log1tech -m aes-256-cfb
 ip r s | grep 'default via' | egrep -o '[[:digit:].]+[.][0-9]+'
 
