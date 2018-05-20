@@ -2,8 +2,6 @@
 sudo apt update -y
 sudo apt install -y vim cscope xsel git-review exuberant-ctags
 sudo apt install -y python-pip autojump software-properties-common
-mkdir -p ~/.pip
-cp pip.conf ~/.pip
 sudo pip install thefuck
 sudo apt install -y libssl-dev python-openssl silversearcher-ag curl
 sudo apt-get -y install build-essential cmake python-dev python3-dev
