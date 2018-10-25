@@ -16,7 +16,6 @@ Plugin 'VundleVim/Vundle.vim'
 " plugin from http://vim-scripts.org/vim/scripts.html
 " Plugin 'L9'
 " Git plugin not hosted on GitHub
-Plugin 'Valloric/YouCompleteMe'
 Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'tpope/vim-fugitive'
