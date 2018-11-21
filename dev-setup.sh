@@ -5,7 +5,7 @@ sudo apt install -y python-pip autojump software-properties-common || sudo dnf i
 sudo pip install thefuck
 sudo apt install -y libssl-dev python-openssl silversearcher-ag curl || sudo dnf install -y openssl-devel the_silver_searcher
 sudo apt install -y build-essential cmake python-dev python3-dev || sudo dnf -y install cmake python-devel python3-devel
-sudo apt install -y libnss3 libgconf-2-4
+sudo apt install -y libnss3 libgconf-2-4 gcc-multilib g++-multilib
 sudo pip install flake8 tox
 export EDITOR=vim
 cp -r .vim/ ~/
