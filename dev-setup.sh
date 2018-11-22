@@ -2,11 +2,11 @@
 sudo apt update -y
 sudo apt install -y vim cscope xsel git-review exuberant-ctags || sudo dnf install -y vim cscope xsel git-review ctags
 sudo apt install -y python-pip autojump software-properties-common || sudo dnf install -y python-pip autojump
-sudo pip install thefuck
 sudo apt install -y libssl-dev python-openssl silversearcher-ag curl || sudo dnf install -y openssl-devel the_silver_searcher
 sudo apt install -y build-essential cmake python-dev python3-dev || sudo dnf -y install cmake python-devel python3-devel
 sudo apt install -y libnss3 libgconf-2-4 gcc-multilib g++-multilib
-sudo pip install flake8 tox
+sudo apt-get -y install libmnl-dev libelf-dev linux-headers-$(uname -r) pkg-config
+sudo pip install flake8 tox thefuck
 export EDITOR=vim
 cp -r .vim/ ~/
 cp .vimrc.python ~/.vimrc
