@@ -48,7 +48,7 @@ set fencs=utf-8,ucs-bom,shift-jis,gb18030,gbk,gb2312,cp936
 set fileencodings=utf-8,ucs-bom,chinese
 
 set langmenu=zh_CN.UTF-8
-
+set backspace=indent,eol,start
 syntax enable
 syntax on
 set background=dark
