@@ -26,7 +26,8 @@ Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'Yggdroot/indentLine'
 Plugin 'spf13/vim-colors'
 Plugin 'flazz/vim-colorschemes'
-" Plugin 'majutsushi/tagbar'
+Plugin 'majutsushi/tagbar'
+" Plugin 'majutsushi/tagbar', { 'commit': 'd4a08c33e516314f35c541b34fe7f909c2ff4381'  }
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
@@ -44,8 +45,8 @@ filetype plugin indent on    " required
 "filetype plugin on
 
 set encoding=utf-8
-set spelllang=en
-set spell
+" set spelllang=en
+" set spell
 set fencs=utf-8,ucs-bom,shift-jis,gb18030,gbk,gb2312,cp936
 set fileencodings=utf-8,ucs-bom,chinese
 
@@ -53,33 +54,37 @@ set langmenu=zh_CN.UTF-8
 set backspace=indent,eol,start
 syntax enable
 syntax on
-" set background=dark
+set background=dark
 colorscheme seoul256
 " colorscheme  monokai-phoenix
 "colorscheme eclipse
 
 " colorscheme solarized
+" colorscheme gotham
 " colorscheme desert
- set bg=dark
-set background=light
-"colorscheme google
-colorscheme watermark
-set background=light
+ " set bg=dark
+" set background=light
+" colorscheme google
+" colorscheme watermark
+" highlight LineNr ctermfg=blue
 " highlight LineNr ctermfg=darkred
-highlight LineNr ctermfg=yellow
 "colorscheme radicalgoodspeed
-"colorscheme monokai-chris
+colorscheme monokain
+set background=light
 let g:indentLine_char = "¦"
 let g:indentLine_enabled = 0
 let g:autopep8_disable_show_diff=1
-let g:syntastic_c_no_include_search = 1
+let g:syntastic_c_no_include_search = 0
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 0
-let g:syntastic_c_remove_include_errors = 1
-let g:syntastic_c_checkers=['oclint']
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 1
+let g:syntastic_c_remove_include_errors = 0
+let g:syntastic_c_checkers=['gcc', 'make']
+let g:syntastic_quiet_messages = { "regex": [  'No such file.* ' ] }
 let g:indent_guides_enable_on_vim_startup = 1
+let g:tagbar_ctags_bin = '~zrchu/ctags'
+let g:tagbar_width = 50
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
@@ -94,7 +99,8 @@ let g:NERDDefaultAlign = 'left'
 " " Set a language to use its alternate delimiters by default
 let g:NERDAltDelims_java = 1
 " " " Add your own custom formats or override the defaults
-let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/'   }   }
+let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/'   },
+                             \ 'h': { 'left': '/**','right': '*/'   } }
 "Allow commenting and inverting empty lines (useful when commenting a region)
 let g:NERDCommentEmptyLines = 1
 " " Enable trimming of trailing whitespace when uncommenting
@@ -124,6 +130,8 @@ set hlsearch
 set incsearch
 set ruler
 set rulerformat=%55(%{strftime('%a\ %b\ %e\ %I:%M\ %p')}\ %5l,%-6(%c%V%)\ %P%)
+highlight ColorColumn ctermbg=magenta
+call matchadd('ColorColumn', '\%81v', 100)
 
 function HeaderPython()
     call setline(1, "#!/usr/bin/env python")
@@ -140,22 +148,22 @@ autocmd bufnewfile *.py call HeaderPython()
 autocmd bufnewfile *.sh call HeaderSh()
 autocmd FileType c,cpp,python,ruby,java autocmd BufWritePre <buffer> :%s/\s\+$//e
 " disable arrow-keys
-noremap <Up> <NOP>
-noremap <Down> <NOP>
-noremap <Left> <NOP>
-noremap <Right> <NOP>
+noremap <Up> gk
+noremap <Down> gj
 " disable ctrl-s
 " noremap <silent> <C-S>          :update<CR>
 " vnoremap <silent> <C-S>         <C-C>:update<CR>
 " inoremap <silent> <C-S>         <C-O>:update<CR>
+nmap <c-p> :TagbarToggle<CR>
+nmap <F5>  :SyntasticCheck<CR>
 nmap <c-s> :w<CR>
-imap <c-s> <Esc>:w<CR>a
+imap <c-s> <Esc>:w<CR>
+imap <c-q> <Esc>:w<CR>a
 nnoremap gev :e $MYVIMRC<CR>
 nnoremap gsv :so $MYVIMRC<CR>
 set relativenumber number
 au FocusLost * :set norelativenumber number
 au FocusGained * :set relativenumber
-" 插入模式下用绝对行号, 普通模式下用相对
 autocmd InsertEnter * :set norelativenumber number
 autocmd InsertLeave * :set relativenumber
 function! NumberToggle()
@@ -165,10 +173,13 @@ function! NumberToggle()
     set relativenumber
   endif
 endfunc
-nnoremap <C-n> :call NumberToggle()<cr>
+set t_ti= t_te=
 
+nnoremap <C-n> :call NumberToggle()<cr>
+nnoremap <C-x> :qall!<CR>
 
 nnoremap <C-o> <C-o>zz
 nnoremap <C-i> <C-i>zz
 nnoremap <C-]> <C-]>zz
-
+nnoremap p ]p
+nnoremap gr gd[{V%::s/<C-R>///gc<left><left><left>}]
