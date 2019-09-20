@@ -1,0 +1,129 @@
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+
+set encoding=utf-8
+" set spelllang=en
+" set spell
+set fencs=utf-8,ucs-bom,shift-jis,gb18030,gbk,gb2312,cp936
+set fileencodings=utf-8,ucs-bom,chinese
+
+set langmenu=zh_CN.UTF-8
+set backspace=indent,eol,start
+syntax enable
+syntax on
+set background=dark
+set background=light
+" colorscheme  monokai-phoenix
+"colorscheme eclipse
+
+" colorscheme solarized
+" colorscheme gotham
+colorscheme desert
+" colorscheme google
+" colorscheme watermark
+" highlight LineNr ctermfg=blue
+" highlight LineNr ctermfg=darkred
+" colorscheme radicalgoodspeed
+" colorscheme monokain
+
+set mouse-=a
+set selection=exclusive
+set selectmode=mouse,key
+
+set showmatch
+set number
+set cursorline
+set nocompatible
+
+set tabstop=4
+set scrolloff=8
+set expandtab
+set softtabstop=4
+set shiftwidth=4
+set autoindent
+set cindent
+set splitright
+set hlsearch
+set incsearch
+set ruler
+set rulerformat=%55(%{strftime('%a\ %b\ %e\ %I:%M\ %p')}\ %5l,%-6(%c%V%)\ %P%)
+highlight ColorColumn ctermbg=magenta
+call matchadd('ColorColumn', '\%81v', 100)
+
+function HeaderPython()
+    call setline(1, "#!/usr/bin/env python")
+    call append(1, "# -*- coding: utf-8 -*-")
+    normal G
+    normal o
+endf
+function HeaderSh()
+    call setline(1, "#!/usr/bin/env bash")
+    normal G
+    normal o
+endf
+autocmd bufnewfile *.py call HeaderPython()
+autocmd bufnewfile *.sh call HeaderSh()
+" autocmd VimEnter * nested :call tagbar#autoopen(1)
+
+
+" disable arrow-keys
+noremap <Up> gk
+noremap <Down> gj
+
+" disable ctrl-s
+" noremap <silent> <C-S>          :update<CR>
+" vnoremap <silent> <C-S>         <C-C>:update<CR>
+" inoremap <silent> <C-S>         <C-O>:update<CR>
+nmap <F3>  :shell<CR>
+nmap <c-s> :w<CR>
+inoremap <c-s> <Esc>:w<CR>
+inoremap <c-q> <Esc>:w<CR>a
+inoremap jj <Esc>^``
+nnoremap gev :e $MYVIMRC<CR>
+nnoremap gsv :so $MYVIMRC<CR>
+" set relativenumber number
+au FocusLost * :set norelativenumber number
+au FocusGained * :set relativenumber
+autocmd InsertEnter * :set norelativenumber number
+autocmd InsertLeave * :set relativenumber
+function! NumberToggle()
+  if(&relativenumber == 1)
+    set norelativenumber number
+  else
+    set relativenumber
+  endif
+endfunc
+
+function! PasteToggle()
+  if(&paste == 1)
+    set nopaste
+  else
+    set paste
+  endif
+endfunc
+
+set t_ti= t_te=
+
+nnoremap <C-n> :call NumberToggle()<cr>
+nnoremap <C-x> :qall!<CR>
+" nnoremap <F6>  :set paste<CR>o
+nnoremap <F7>  :only<CR>
+
+nnoremap <F6>  :call PasteToggle()<cr>o
+nnoremap <F9>  zf% 
+nnoremap <F10> zd 
+
+nnoremap <C-o> <C-o>zz
+nnoremap <C-i> <C-i>zz
+nnoremap <C-]> <C-]>zz
+nnoremap p ]p
+nnoremap gr gd[{V%::s/<C-R>///gc<left><left><left>}]
+nmap pw :inoremap <lt>Space> <lt>Space><lt>Esc>:iunmap <lt>lt>Space><lt>CR><CR> cw
+
+nmap p$ :inoremap <lt>CR> <lt>CR><lt>Esc>:iunmap <lt>lt>CR><lt>CR><CR> c$
+nnoremap S diw"0P
