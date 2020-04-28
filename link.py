@@ -5,7 +5,7 @@ class LinkedNode(object):
         self.next = None
         self.value = value
 
-def insert_linked(Head,Node):
+def insert_linked(Head, Node):
     Node.next = Head.next
     Head.next = Node
 
