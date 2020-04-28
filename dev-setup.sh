@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+apt-get -y install sudo
 sudo apt update -y
 sudo apt install -y vim cscope xsel git-review exuberant-ctags || sudo dnf install -y vim cscope xsel git-review ctags
 sudo apt install -y python-pip autojump software-properties-common || sudo dnf install -y python-pip autojump
