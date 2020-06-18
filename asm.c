@@ -5,6 +5,10 @@ int sum(int x, int y)
 {
     return x*2+y;
 }
+
+
+#define A 1000000
+
 void  g(via_ptr *v_array)
 {
     printf ("%p\n", v_array);
