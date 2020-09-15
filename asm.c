@@ -23,14 +23,19 @@ int main(void)
     char *u = "cesi";
     char v[] = "kilo";
 
+    int k[foo];
+    k[1] = 1;
     strcpy(test[0], u);
     strcpy(test[1], v);
+    k[3] = (printf ("%s,%d hello\n", __FUNCTION__, __LINE__), 6);
         __asm__ __volatile__("addl  %%ebx,%%eax"
                              :"=a"(foo)
                              :"a"(foo), "b"(bar)
                              );
         printf("foo+bar=%d, %s\n", foo, test[0]);
         printf("foo*2+bar=%d\n", sum(foo,bar));
+        printf("k[1]=%d, k[2] %d\n", k[1], k[2]);
+        printf("k[3]=%d, k[2] %d\n", k[3], k[2]);
         g(test);
         return 0;
 }
