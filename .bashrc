@@ -91,6 +91,7 @@ alias ctags='ctags --python-kinds=-i'
 alias ssh='ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
 alias scp='scp -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
 
+alias ff='find . -size +5M -type f -print0 | xargs -0 ls -Ssh | sort -z'
 alias k='TF_CMD=$(TF_ALIAS=k PYTHONIOENCODING=utf-8 TF_SHELL_ALIASES=$(alias) \
 thefuck $(fc -ln -1)) && eval $TF_CMD && history -s $TF_CMD'
 
