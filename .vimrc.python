@@ -59,7 +59,7 @@ colorscheme koehler
 "set background=light
 "colorscheme google
 colorscheme seoul256
-colorscheme gruybox
+colorscheme gruvbox
 "colorscheme watermark
 "colorscheme radicalgoodspeed
 "colorscheme monokai-chris
