@@ -92,7 +92,7 @@ let g:syntastic_c_checkers=['gcc']
 let g:syntastic_quiet_messages = { "regex": [  'No such file.* ' ] }
 let g:syntastic_c_config_file = '.my_in_file_for_syn'
 let g:indent_guides_enable_on_vim_startup = 1
-let g:tagbar_ctags_bin = '~zrchu/ctags'
+let g:tagbar_ctags_bin = 'ctags'
 let g:tagbar_width = 50
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
@@ -211,8 +211,8 @@ nnoremap <C-x> :qall!<CR>
 nnoremap <F7>  :only<CR>
 
 nnoremap <F6>  :call PasteToggle()<cr>o
-nnoremap <F9>  zf% 
-nnoremap <F10> zd 
+nnoremap <F9>  zf%
+nnoremap <F10> zd
 
 nnoremap <C-o> <C-o>zz
 nnoremap <C-i> <C-i>zz
