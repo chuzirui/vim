@@ -98,15 +98,15 @@ set rulerformat=%55(%{strftime('%a\ %b\ %e\ %I:%M\ %p')}\ %5l,%-6(%c%V%)\ %P%)
 
 autocmd VimEnter * nested :call tagbar#autoopen(1)
 function HeaderPython()
-    call setline(1, "#!/usr/bin/env python")
-    call append(1, "# -*- coding: utf-8 -*-")
-    normal G
-    normal o
+	call setline(1, "#!/usr/bin/env python")
+	call append(1, "# -*- coding: utf-8 -*-")
+	normal G
+	normal o
 endf
 function HeaderSh()
-    call setline(1, "#!/usr/bin/env bash")
-    normal G
-    normal o
+	call setline(1, "#!/usr/bin/env bash")
+	normal G
+	normal o
 endf
 autocmd bufnewfile *.py call HeaderPython()
 autocmd bufnewfile *.sh call HeaderSh()
@@ -115,3 +115,4 @@ noremap <Up> <NOP>
 noremap <Down> <NOP>
 noremap <Left> <NOP>
 noremap <Right> <NOP>
+

@@ -1,6 +1,7 @@
 #include "stdio.h"
 #include "string.h"
-typedef char via_ptr[20];
+#include "asm.h"
+
 int sum(int x, int y)
 {
     return x*2+y;
@@ -22,6 +23,13 @@ int main(void)
     int foo = 10, bar = 15;
     char *u = "cesi";
     char v[] = "kilo";
+    int tmp;
+
+    tmp=foo, foo=bar, bar=tmp;
+
+
+    if ((printf("hello"), 8) > 3)
+	    printf ("world");
 
     strcpy(test[0], u);
     strcpy(test[1], v);
