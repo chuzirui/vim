@@ -33,6 +33,7 @@ int main(void)
                              :"a"(foo), "b"(bar)
                              );
         printf("foo+bar=%d, %s\n", foo, test[0]);
+        printf("sizeofu %lu sizeofv %lu\n", sizeof(u), sizeof(v));
         printf("foo*2+bar=%d\n", sum(foo,bar));
         printf("k[1]=%d, k[2] %d\n", k[1], k[2]);
         printf("k[3]=%d, k[2] %d\n", k[3], k[2]);

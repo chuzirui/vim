@@ -154,4 +154,5 @@ git remote set-url origin ssh://git@github.com/chuzirui/vim.git
 git remote set-url origin ssh://git@github.com/chuzirui/bosh-lite.git
 git stash apply stash@{0}
 git push --set-upstream origin leo
+git submodule update --init
 
