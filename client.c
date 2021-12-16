@@ -38,10 +38,10 @@ int main(int argc, char const *argv[])
     pos = sizeof(uint32_t);
     for (ii = 1; ii < argc; ii++) {
         strcpy(&msg[pos], argv[ii]);
-        pos = strlen(msg) + 1;
+        pos += strlen(argv[ii]) + 1;
     }
-    msg[pos] = 0;
-	send(sock, msg, strlen(msg) + 2, 0);
+    msg[pos + 1] = 0;
+	send(sock, msg, pos + 1, 0);
 
     fileHandle = fdopen(sock, "r");
     // Read until done
