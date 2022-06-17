@@ -5,14 +5,17 @@ class LinkedNode(object):
         self.next = None
         self.value = value
 
+
 def insert_linked(Head, Node):
     Node.next = Head.next
     Head.next = Node
+
 
 def print_list(Head):
     while (Head):
         print (Head.value)
         Head = Head.next
+
 
 def delete_node_list(Head, Node):
     while (Head):
@@ -20,6 +23,7 @@ def delete_node_list(Head, Node):
             Head.next = Node.next
             return
         Head = Head.next
+
 
 def reverse_list(Head):
     c2 = Head.next
