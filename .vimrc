@@ -23,6 +23,7 @@ Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 Plugin 'spf13/vim-colors'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'flazz/vim-colorschemes'
+Plugin 'ycm-core/YouCompleteMe'
 Plugin 'majutsushi/tagbar'
 " Install L9 and avoid a Naming conflict if you've already installed a
 " different version somewhere else.
