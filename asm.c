@@ -4,7 +4,18 @@
 #include "asm.h"
 #include <metaresc.h>
 #include <rpc/rpc.h>
+#include <unistd.h>  /* Many POSIX functions (but not all, by a large margin) */
+#include <fcntl.h>   /* open(), creat() - and fcntl() */
 
+#define END_TEST }
+#define START_TEST(R1, __testname)\
+static void  R1## __testname (void)\
+{\
+printf ("%s\n", __func__); \
+__testname(1, 2); \
+
+#define ASM 1
+#define __MODULE__ASM ASM
 
 TYPEDEF_ENUM (union_discriminator_t,
         (UD_VOID_PTR, , "v_ptr"),
@@ -64,7 +75,12 @@ TYPEDEF_STRUCT (data, BITFIELD(int, type, :6), BITFIELD(int , value, :26));
 TYPEDEF_STRUCT (d, type, value, ud, enu);
 TYPEDEF_FUNC (int, p_fn, (int, int));
 
+#define offset_of(field, type) \
+   &(((type *)NULL)->field)
+
 #define A 1000000
+START_TEST(vim, sum)
+END_TEST
 
 void  g(via_ptr *v_array)
 {
@@ -73,6 +89,12 @@ void  g(via_ptr *v_array)
     printf ("%p\n", v_array );
     printf ("%s\n", *(++v_array));
 }
+
+int test_size[] = {1, 2, 3};
+typep ceshi_p[] = {{1}, {2}, {3}};
+int ssceshi = sizeof(ceshi_p)/sizeof(ceshi_p[0]);
+
+
 int main(void)
 {
     XDR xdr;
@@ -81,7 +103,8 @@ int main(void)
     int foo = 10, bar = 15;
     char *u = "cesi";
     char v[] = "kilo";
-    char f0[20];
+    char f0[20] = "Hello";
+    char f1[20] ;
     int tmp;
     p_fn p;
     p = sum;
@@ -89,21 +112,45 @@ int main(void)
     bool test_bool = 3;
     char tool = -2;
     data t = {1, 15};
-    resizable_array_t ret = { .array = (typep[]){{9}, {1}} , .array_size = 2 * sizeof(typep)};
+    resizable_array_t ret = {
+        .array = (typep[]){{9}, {1}},
+        .array_size = 2 * sizeof(typep),
+    };
 
+
+#if (__MODULE__ASM == ASM)
     fp = fopen ("test1.out", "w");
-    xdrstdio_create (&xdr, fp, XDR_ENCODE);
+#else
+    fp = NULL;
+#endif
+
+    xdrstdio_create(&xdr, fp, XDR_ENCODE);
+    MR_SAVE_XDR(, &xdr, &f0);
     MR_SAVE_XDR(resizable_array_t, &xdr, &ret);
-    xdr_destroy (&xdr);
+    for (int i = 0; i < 1000; i++){
+        MR_SAVE_XDR(resizable_array_t, &xdr, &ret);
+    }
+    xdr_destroy(&xdr);
     fclose (fp);
 
     int fkk = *(int *)&t;
     tmp=foo, foo=bar, bar=tmp;
 
     resizable_array_t sload;
+    if (!access("/tmp/enable_sai_sniffer", F_OK)) {
+        printf ("enable sniffer\n");
+    }else {
+        printf ("disable sniffer\n");
+    }
+
+    vimsum();
     fp = fopen ("test1.out", "r");
     xdrstdio_create (&xdr, fp, XDR_DECODE);
 
+    MR_LOAD_XDR(, &xdr, &f1);
+    printf ("sizeof test_size %d\n", sizeof(test_size)/sizeof(test_size[0]));
+    printf ("size %d, %d\n", offset_of(a, typep), ssceshi );
+    printf ("f1: %s, %d\n", f1, offset_of(right, tree_node_t));
     MR_LOAD_XDR(resizable_array_t, &xdr, &sload);
     MR_PRINT ("ret = ", (resizable_array_t, &ret));
     MR_PRINT ("load = ", (resizable_array_t, &sload));

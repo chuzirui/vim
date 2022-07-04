@@ -112,4 +112,4 @@ source /usr/share/autojump/autojump.sh
 #    . /etc/bash_completion
 #fi
 export EDITOR=vim
-
+stty -ixon
