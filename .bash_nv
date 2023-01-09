@@ -1,0 +1,94 @@
+# ~/.bashrc: executed by bash(1) for non-login shells.
+
+# Note: PS1 and umask are already set in /etc/profile. You should not
+# need this unless you want different defaults for root.
+# PS1='${debian_chroot:+($debian_chroot)}\h:\w\$ '
+# umask 022
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+    . /etc/bashrc
+fi
+
+if [ -f /etc/bash.bashrc ]; then
+    . /etc/bash.bashrc
+fi
+
+if [ -f /opt/rh/devtoolset-8/enable ]; then
+        source /opt/rh/devtoolset-8/enable
+fi
+
+if [ -f /auto/sw_system_project/devops/common/bashrc ]; then
+. /auto/sw_system_project/devops/common/bashrc
+fi
+
+# Interactive flags to avoid making mistaked
+alias cp='cp -f'
+
+# Colorized ls
+export LS_OPTIONS='--color=auto'
+eval "`dircolors`"
+
+# Needed env updates for SDK
+export PATH="/usr/sbin":"$PATH"
+export LD_LIBRARY_PATH=/usr/local/lib64:/usr/lib64:/usr/local/lib:/usr/lib
+
+# Useful aliases
+alias uninstall="echo 'Whatcha talkin bout Willis?! This command uninstalls OS Entirely! If you are sure - Run it preceding backslash'"
+alias sdk_install='/auto/mswg/projects/sx_mlnx_os/sx_fit_regression/libs/scripts/install_sdk_wrapper.py'
+alias fw_burn='/auto/mswg/projects/sx_mlnx_os/sx_fit_regression/libs/scripts/sdk_fw_burn.py'
+alias cov='env COVERITY_UNSUPPORTED=1 /.autodirect/app/Coverity/cov-analysis-linux64-7.6.0/bin/cov-analyze --dir ~/cov/ --all'
+alias ctags='ctags --python-kinds=-i'
+alias ff='find . -size +5M -type f -print0 | xargs -0 ls -Ssh | sort -z'
+alias fw_burn='/auto/mswg/projects/sx_mlnx_os/sx_fit_regression/libs/scripts/sdk_fw_burn.py'
+alias gau='git add . -u'
+alias gm='git commit'
+alias gma='git commit --amend'
+alias grm='git reset --hard HEAD~'
+alias gs='git status  --untracked-files=no'
+alias gsh='git show'
+alias l='ls $LS_OPTIONS -lA'
+alias ll='ls $LS_OPTIONS -lAh'
+alias ls='ls $LS_OPTIONS'
+alias mkall='./mlnx_sai/autogen.sh;mkdir -p mlnx_sai_obj;cd mlnx_sai_obj; ../mlnx_sai/configure --enable-debug --prefix=/usr;make clean && make install -j;cd ..;mkdir -p mlnx_sai_unittest_obj; cd mlnx_sai_unittest_obj;../mlnx_sai_unit_tests/autogen.sh;../mlnx_sai_unit_tests/configure --enable-debug --prefix=/usr --with-sai=/usr;cd ..;make -C mlnx_sai_unittest_obj -j'
+alias mkcov='env COVERITY_UNSUPPORTED=1 /.autodirect/app/Coverity/cov-analysis-linux64-7.6.0/bin/cov-build  --config ~/cov.cfg --dir ~/cov make -C mlnx_sai_obj clean && make -C mlnx_sai_obj -j'
+alias mksai='make -C mlnx_sai_obj -j'
+alias mksaiclean='make -C mlnx_sai_obj -j clean'
+alias mksaiinstall='make -C mlnx_sai_obj install'
+alias mksaiserver='patch -p1 < ~/ctype.diff; make platform=MLNX -C SAI_ptf/SAI_thrift/ clean all'
+alias mksaiut='make -C mlnx_sai_unittest_obj -j'
+alias mv='mv -i'
+alias pdt='python setup.py install;tox -e py27 -e pep8 -e py35'
+alias scp='scp -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
+alias sdk_install='/auto/mswg/projects/sx_mlnx_os/sx_fit_regression/libs/scripts/install_sdk_wrapper.py'
+alias sdump='/usr/bin/sx_api_dbg_generate_dump.py'
+alias ssh='ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
+export EDITOR=vim
+alias rm='rm -rf'
+alias clean="find . -name '*.swp' -exec rm {} \;; find . -name '*.rej' -exec rm {} \;"
+alias run='for i in {1..50}; do ./SAI_ptf/MARS/srv_run.sh ; done'
+alias sdkup='./install.sh --enable-debug --use-sources --prefix /usr/ --no-optimization'
+alias vii='pgrep vim'
+alias ut='dvs_stop.sh ; ./mlnx_sai_unittest_obj/mlnx_sai_unit_tests --conf /usr/share/sai_3700.xml -t'
+alias lsfw='ls /auto/mswg/release/sx_mlnx_fw/SPC2'
+alias lssdk='ls /auto/mswg/release/sx_sdk_eth/'
+alias hg='history | grep '
+alias fwup='mlxfwmanager -f -u -i '
+alias pit='patch -p1 <'
+alias rit='patch -p1 -R < '
+export PYTHONPATH=/opt/ver_sdk
+alias runptf='sh SAI_ptf/MARS/ptf_run.sh --boot-type normal_boot --platform eth --loopback --is loopback'
+alias gl='git log --graph --pretty=format:'\''%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'\'' --abbrev-commit'
+alias gms='git checkout master'
+alias mkmrall='./mlnx_sai/autogen.sh;mkdir -p mlnx_sai_mr_obj;cd mlnx_sai_mr_obj; ../mlnx_sai/configure --enable-debug --prefix=/usr CFLAGS='\''-DENABLE_METARESC'\'' ;make clean && make LDFLAGS='\''-lmetaresc'\'' install -j 4;cd ..;mkdir -p mlnx_sai_unittest_mr_obj; cd mlnx_sai_unittest_mr_obj;../mlnx_sai_unit_tests/autogen.sh;../mlnx_sai_unit_tests/configure --enable-debug --prefix=/usr --with-sai=/usr CFLAGS='\''-DENABLE_METARESC -I../mlnx_sai_unit_tests/../mlnx_sai/inc/sai -I/usr/include/libxml2'\'';cd ..;make -C mlnx_sai_unittest_mr_obj -j 4'
+alias mkdeb="cd mlnx_sai;debuild -e 'make_extra_flags=\"DEFS=-DACS_OS -DCONFIG_SYSLOG\"' -us -uc -d -b;./configure; make clean; cd .."
+export EDITOR=vim
+stty -ixon
+export LANG=en_US.utf-8
+export LC_ALL=en_US.utf-8
+if [ -f ~/.git-completion.bash ]; then
+  . ~/.git-completion.bash
+fi
+alias utall='dvs_stop.sh ; ./mlnx_sai_unittest_obj/mlnx_sai_unit_tests --conf /usr/share/sai_3700.xml'
+alias bchk='ngci_tool --beautify repair'
+alias schk='ngci_tool --spell-check'
