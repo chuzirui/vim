@@ -19,7 +19,6 @@ Plugin 'VundleVim/Vundle.vim'
 " Git plugin not hosted on GitHub
 Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'scrooloose/nerdcommenter'
-Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdtree'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'tpope/vim-fugitive'
@@ -63,7 +62,7 @@ syntax enable
 syntax on
 set background=dark
 " set background=light
-colorscheme seoul256
+" colorscheme seoul256
 " colorscheme space-vim-dark
 " colorscheme  monokai-phoenix
 " colorscheme eclipse
@@ -71,7 +70,7 @@ colorscheme seoul256
 
 " colorscheme solarized
 " colorscheme gotham
-" colorscheme desert
+colorscheme desert
 " colorscheme google
 " colorscheme watermark
 " colorscheme seoul256

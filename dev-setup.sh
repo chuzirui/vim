@@ -7,7 +7,7 @@ sudo apt install -y libssl-dev python-openssl silversearcher-ag curl || sudo dnf
 sudo apt install -y build-essential cmake python-dev python3-dev || sudo dnf -y install cmake python-devel python3-devel
 sudo apt install -y libnss3 libgconf-2-4 gcc-multilib g++-multilib
 sudo apt-get -y install libmnl-dev libelf-dev linux-headers-$(uname -r) pkg-config || sudo dnf -y groupinstall 'Development Tools'
-sudo pip install flake8 tox thefuck
+sudo pip install flake8 tox thefuck git_review
 export EDITOR=vim
 cp -r .vim/ ~/
 cp .vimrc.c ~/.vimrc
