@@ -34,6 +34,7 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'dkprice/vim-easygrep'
 Plugin 'mileszs/ack.vim'
+Plugin 'Exafunction/codeium.vim'
 
 " git repos on your local machine (i.e. when working on your own plugin)
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
@@ -173,7 +174,7 @@ noremap <Down> gj
 nmap <c-p> :TagbarToggle<CR>
 nmap <F5>  :SyntasticCheck<CR>
 nmap <F4>  zf%
-nmap <F3>  :shell<CR>
+nmap <F3>  :w<CR>:shell<CR>
 nmap <c-s> :w<CR>
 nmap <F1>  :n<CR>
 nmap <F2>  :prev<CR>
